@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @TableName("t_user")
-public class UserDo {
+public class UserDO {
     private String id;
     private String username;
     private String password;
@@ -22,5 +22,5 @@ public class UserDo {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
     @TableField(fill = FieldFill.INSERT)
-    private String delFlag;
+    private Integer delFlag;
 }
