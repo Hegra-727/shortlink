@@ -1,5 +1,7 @@
 package com.nageoffer.admin.dao.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -13,7 +15,9 @@ public class UserDo {
     private String phone;
     private String mail;
     private String deletionTime;
+    @TableField(fill = FieldFill.INSERT)
     private String createTime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updateTime;
     private String delFlag;
 }
