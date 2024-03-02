@@ -2,12 +2,14 @@ package com.nageoffer.admin.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.nageoffer.admin.common.convention.exception.ClientException;
 import com.nageoffer.admin.dao.entity.UserDo;
 import com.nageoffer.admin.dao.mapper.UserMapper;
 import com.nageoffer.admin.dto.req.UserRegisterReqDTO;
+import com.nageoffer.admin.dto.req.UserUpdateReqDTO;
 import com.nageoffer.admin.dto.resp.UserRespDTO;
 import com.nageoffer.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -61,5 +63,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDo> implements 
         }finally {
             lock.unlock();
         }
+    }
+
+    @Override
+    public void update(UserUpdateReqDTO requestParam) {
+        //TODO 验证当前登录用户
+        LambdaUpdateWrapper<UserDo> wrapper = Wrappers.lambdaUpdate(UserDo.class)
+                .eq(UserDo::getUsername, requestParam.getUsername());
+        baseMapper.update(BeanUtil.toBean(requestParam,UserDo.class),wrapper);
     }
 }

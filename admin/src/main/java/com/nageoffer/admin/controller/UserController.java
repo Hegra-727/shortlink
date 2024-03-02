@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.nageoffer.admin.common.convention.result.Result;
 import com.nageoffer.admin.common.convention.result.Results;
 import com.nageoffer.admin.dto.req.UserRegisterReqDTO;
+import com.nageoffer.admin.dto.req.UserUpdateReqDTO;
 import com.nageoffer.admin.dto.resp.UserActualRespDTO;
 import com.nageoffer.admin.dto.resp.UserRespDTO;
 import com.nageoffer.admin.service.UserService;
@@ -44,6 +45,12 @@ public class UserController {
     @PostMapping("/api/short-link/v1/user")
     public Result<Void> register(@RequestBody UserRegisterReqDTO requestParam){
         userService.register(requestParam);
+        return Results.success();
+    }
+
+    @PutMapping("/api/short-link/v1/user")
+    public Result<Void> update(@RequestBody UserUpdateReqDTO requestParam){
+        userService.update(requestParam);
         return Results.success();
     }
 }
