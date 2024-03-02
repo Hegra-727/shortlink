@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @TableName("t_user")
 public class UserDo {
@@ -14,10 +16,11 @@ public class UserDo {
     private String realName;
     private String phone;
     private String mail;
-    private String deletionTime;
+    private Long deletionTime;
     @TableField(fill = FieldFill.INSERT)
-    private String createTime;
+    private Date createTime;
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private String updateTime;
+    private Date updateTime;
+    @TableField(fill = FieldFill.INSERT)
     private String delFlag;
 }
