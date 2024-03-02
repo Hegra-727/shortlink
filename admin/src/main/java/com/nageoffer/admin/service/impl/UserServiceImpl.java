@@ -27,7 +27,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDo> implements 
 
     private final RBloomFilter<String> userRegisterCachePenetrationBloomFilter;
 
-    private RedissonClient redissonClient;
+    private final RedissonClient redissonClient;
 
     @Override
     public UserRespDTO getUserByUsername(String username) {
