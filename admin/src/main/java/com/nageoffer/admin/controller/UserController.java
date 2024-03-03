@@ -3,9 +3,11 @@ package com.nageoffer.admin.controller;
 import cn.hutool.core.bean.BeanUtil;
 import com.nageoffer.admin.common.convention.result.Result;
 import com.nageoffer.admin.common.convention.result.Results;
+import com.nageoffer.admin.dto.req.UserLoginReqDTO;
 import com.nageoffer.admin.dto.req.UserRegisterReqDTO;
 import com.nageoffer.admin.dto.req.UserUpdateReqDTO;
 import com.nageoffer.admin.dto.resp.UserActualRespDTO;
+import com.nageoffer.admin.dto.resp.UserLoginRespDTO;
 import com.nageoffer.admin.dto.resp.UserRespDTO;
 import com.nageoffer.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -52,5 +54,15 @@ public class UserController {
     public Result<Void> update(@RequestBody UserUpdateReqDTO requestParam){
         userService.update(requestParam);
         return Results.success();
+    }
+
+    @PostMapping("/api/short-link/v1/user/login")
+    public Result<UserLoginRespDTO> login(@RequestBody UserLoginReqDTO requestParam){
+        return Results.success(userService.login(requestParam));
+    }
+
+    @GetMapping("/api/short-link/v1/user/login-check")
+    public Result<Boolean> checkLogin(@RequestParam("username") String username,@RequestParam("token") String token){
+        return Results.success(userService.checkLogin(username,token));
     }
 }
