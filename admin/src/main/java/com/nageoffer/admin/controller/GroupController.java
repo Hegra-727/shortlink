@@ -3,6 +3,7 @@ package com.nageoffer.admin.controller;
 import com.nageoffer.admin.common.convention.result.Result;
 import com.nageoffer.admin.common.convention.result.Results;
 import com.nageoffer.admin.dto.req.ShortLinkGroupSaveReqDTO;
+import com.nageoffer.admin.dto.req.ShortLinkGroupSortReqDTO;
 import com.nageoffer.admin.dto.req.ShortLinkGroupUpdateReqDTO;
 import com.nageoffer.admin.dto.resp.ShortLinkGroupRespDTO;
 import com.nageoffer.admin.service.GroupService;
@@ -51,6 +52,12 @@ public class GroupController {
     @DeleteMapping("/api/short-link/admin/v1/group")
     public Result<Void> updateGroup(@RequestParam String gid){
         groupService.deleteGroup(gid);
+        return Results.success();
+    }
+
+    @PostMapping("/api/short-link/admin/v1/sort")
+    public Result<Void> sortGroup(@RequestBody List<ShortLinkGroupSortReqDTO> requestParam){
+        groupService.sortGroup(requestParam);
         return Results.success();
     }
 }
